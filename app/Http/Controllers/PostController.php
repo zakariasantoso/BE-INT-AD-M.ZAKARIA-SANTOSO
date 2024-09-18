@@ -42,7 +42,9 @@ class PostController extends Controller
         ]);
 
         $post = Post::create($request->all());
-        return response()->json($post, 201);
+        return response()->json([
+            'message' => 'Post created successfully',
+        ], 201);
     }
 
     /**
@@ -65,25 +67,6 @@ class PostController extends Controller
     public function edit($id)
     {
         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        $request->validate([
-            'title' => 'sometimes|required',
-            'content' => 'sometimes|required',
-            'category_id' => 'sometimes|required|exists:categories,id',
-        ]);
-
-        $post->update($request->all());
-        return response()->json($post, 200);
     }
 
     /**
